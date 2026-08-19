@@ -1,106 +1,100 @@
-{%- style -%}
-  .footer {
-    background-color: #FFFFFF;
-    padding: 60px 40px 20px;
-    border-top: 1px solid #E5E5E5;
-  }
+{% comment %}
+  Footer Section - LivSo Style
+  Products, social nav, footer nav, copyright
+{% endcomment %}
 
-  .footer__container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 60px;
-    margin-bottom: 60px;
-  }
-
-  .footer__column h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #2C302E;
-    margin-bottom: 24px;
-  }
-
-  .footer__menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .footer__menu-item {
-    margin-bottom: 12px;
-  }
-
-  .footer__menu-item a {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    color: #2C302E;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: opacity 0.3s ease;
-  }
-
-  .footer__menu-item a:hover {
-    opacity: 0.7;
-  }
-
-  .footer__bottom {
-    border-top: 1px solid #E5E5E5;
-    padding-top: 20px;
-    text-align: center;
-  }
-
-  .footer__copyright {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    color: #5C6E61;
-  }
-
-  @media (max-width: 768px) {
-    .footer {
-      padding: 40px 20px 20px;
-    }
-
-    .footer__container {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-  }
-{%- endstyle -%}
-
-<footer class="footer" data-section-id="{{ section.id }}">
-  <div class="footer__container">
-    <div class="footer__column">
-      <h3>{{ section.settings.products_title | default: 'Our Products' }}</h3>
-      <ul class="footer__menu">
-        {%- for link in section.settings.products_menu.links -%}
-          <li class="footer__menu-item">
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </div>
-
-    <div class="footer__column">
-      <ul class="footer__menu">
-        {%- for link in section.settings.links_menu.links -%}
-          <li class="footer__menu-item">
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-        {%- endfor -%}
-      </ul>
+<footer>
+  <div class="products" id="products">
+    <h1>{{ section.settings.products_title }}</h1>
+    
+    <div class="wrapper">
+      {% for block in section.blocks %}
+        {% if block.type == 'product_icon' %}
+          <div class="product">
+            {% if block.settings.icon_svg != blank %}
+              {{ block.settings.icon_svg }}
+            {% endif %}
+            
+            {% if block.settings.product_link != blank %}
+              <a href="{{ block.settings.product_link }}">
+                <h2>{{ block.settings.product_name }}</h2>
+              </a>
+            {% else %}
+              <h2>{{ block.settings.product_name }}</h2>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
-
-  <div class="footer__bottom">
-    <p class="footer__copyright">
-      {{ section.settings.copyright_text | default: '© 2026 LivSo, LLC. All rights reserved.' }}
-    </p>
-  </div>
+  
+  <nav class="social-nav">
+    <ul>
+      {% if section.settings.facebook_url != blank %}
+        <li>
+          <a target="_blank" href="{{ section.settings.facebook_url }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#6c807a" viewBox="0 0 18.18 35">
+              <path d="M5.37,35V19H0V12.81H5.37V8.22C5.37,2.9,8.62,0,13.37,0a44.09,44.09,0,0,1,4.8.25V5.81H14.88c-2.58,0-3.08,1.23-3.08,3v4H18L17.16,19H11.8V35Z"/>
+            </svg>
+          </a>
+        </li>
+      {% endif %}
+      
+      {% if section.settings.twitter_url != blank %}
+        <li>
+          <a target="_blank" href="{{ section.settings.twitter_url }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#6c807a" viewBox="0 0 36.15 29.37">
+              <path d="M36.15,3.48a14.82,14.82,0,0,1-4.26,1.17A7.44,7.44,0,0,0,35.15.54a14.85,14.85,0,0,1-4.71,1.8A7.42,7.42,0,0,0,17.8,9.11,21.05,21.05,0,0,1,2.52,1.36a7.42,7.42,0,0,0,2.29,9.9,7.39,7.39,0,0,1-3.36-.93s0,.06,0,.09A7.42,7.42,0,0,0,7.4,17.7a7.43,7.43,0,0,1-3.35.13A7.42,7.42,0,0,0,11,23a14.88,14.88,0,0,1-9.21,3.17A15,15,0,0,1,0,26a21,21,0,0,0,11.37,3.33c13.64,0,21.1-11.3,21.1-21.1q0-.48,0-1A15.07,15.07,0,0,0,36.15,3.48Z"/>
+            </svg>
+          </a>
+        </li>
+      {% endif %}
+      
+      {% if section.settings.instagram_url != blank %}
+        <li>
+          <a target="_blank" href="{{ section.settings.instagram_url }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#6c807a" viewBox="0 0 38 38">
+              <path d="M19,3.42c5.07,0,5.67,0,7.68.11a10.51,10.51,0,0,1,3.53.65,5.89,5.89,0,0,1,2.18,1.42,5.89,5.89,0,0,1,1.42,2.18,10.51,10.51,0,0,1,.65,3.53c.09,2,.11,2.6.11,7.68s0,5.67-.11,7.68a10.51,10.51,0,0,1-.65,3.53,6.29,6.29,0,0,1-3.61,3.61,10.51,10.51,0,0,1-3.53.65c-2,.09-2.6.11-7.68.11s-5.67,0-7.68-.11a10.51,10.51,0,0,1-3.53-.65,5.89,5.89,0,0,1-2.18-1.42,5.89,5.89,0,0,1-1.42-2.18,10.51,10.51,0,0,1-.65-3.53c-.09-2-.11-2.6-.11-7.68s0-5.67.11-7.68a10.51,10.51,0,0,1,.65-3.53A5.89,5.89,0,0,1,5.61,5.61,5.89,5.89,0,0,1,7.79,4.19,10.51,10.51,0,0,1,3.53,3.54,14,14,0,0,0,6.55,1a14,14,0,0,0,4.61-.88c2-.09,2.67-.11,7.83-.11s5.81,0,7.83.11A14,14,0,0,0,31.45,1,9.72,9.72,0,0,0,37,6.55a14,14,0,0,0,.88,4.61c.09,2,.11,2.67.11,7.83s0,5.81-.11,7.83A14,14,0,0,0,37,31.45a9.72,9.72,0,0,0-5.55,5.55,14,14,0,0,0-4.61.88c-2,.09-2.67.11-7.83.11s-5.81,0-7.83-.11A14,14,0,0,0,6.55,37,9.31,9.31,0,0,0,3.19,34.81,9.31,9.31,0,0,0,1,31.45a14,14,0,0,0-.88-4.61C0,24.81,0,24.16,0,19s0-5.81.11-7.83A14,14,0,0,0,1,6.55,9.31,9.31,0,0,0,3.19,3.19,9.31,9.31,0,0,0,6.55,1a14,14,0,0,0,4.61-.88c2-.09,2.67-.11,7.83-.11Z"/>
+              <path d="M19,9.24A9.76,9.76,0,1,0,28.76,19,9.76,9.76,0,0,0,19,9.24Zm0,16.09A6.33,6.33,0,1,1,25.33,19,6.33,6.33,0,0,1,19,25.33Z"/>
+              <circle cx="29.14" cy="8.86" r="2.28"/>
+            </svg>
+          </a>
+        </li>
+      {% endif %}
+      
+      {% if section.settings.pinterest_url != blank %}
+        <li>
+          <a target="_blank" href="{{ section.settings.pinterest_url }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#6c807a" viewBox="0 0 25.54 32.99">
+              <path d="M13.54,0C4.54,0,0,6.46,0,11.84,0,15.1,1.23,18,3.88,19.08a.65.65,0,0,0,.95-.47c.09-.33.29-1.17.39-1.52A.92.92,0,0,0,4.94,16a5.46,5.46,0,0,1-1.25-3.72A9,9,0,0,1,13,3.23c5.09,0,7.89,3.11,7.89,7.26,0,5.46-2.42,10.08-6,10.08a2.93,2.93,0,0,1-3-3.65c.57-2.4,1.67-5,1.67-6.72A2.54,2.54,0,0,0,11,7.35c-2,0-3.65,2.1-3.65,4.91a7.29,7.29,0,0,0,.6,3L5.54,25.58a21.27,21.27,0,0,0-.06,7.2.25.25,0,0,0,.45.11,20.23,20.23,0,0,0,3.42-6.2c.23-.84,1.33-5.21,1.33-5.21a5.43,5.43,0,0,0,4.63,2.36c6.09,0,10.23-5.55,10.23-13C25.54,5.24,20.78,0,13.54,0Z"/>
+            </svg>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+  
+  <nav class="footer-nav">
+    <ul>
+      <li><button data-toggle="modal" data-target="#faq">FAQ</button></li>
+      <li><button data-toggle="modal" id="contact-btn" data-target="#contact">Contact</button></li>
+    </ul>
+  </nav>
+  
+  <p class="copyright">
+    &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}, LLC. All rights reserved.
+    <div class="info-pages">
+      {% if section.settings.privacy_policy_url != blank %}
+        <a href="{{ section.settings.privacy_policy_url }}">Privacy Policy</a>
+      {% endif %}
+      {% if section.settings.terms_of_use_url != blank %}
+        <a href="{{ section.settings.terms_of_use_url }}">Terms of Use</a>
+      {% endif %}
+      {% if section.settings.terms_of_sale_url != blank %}
+        <a href="{{ section.settings.terms_of_sale_url }}">Terms of Sale</a>
+      {% endif %}
+    </div>
+  </p>
 </footer>
 
 {% schema %}
@@ -114,25 +108,72 @@
       "default": "Our Products"
     },
     {
-      "type": "link_list",
-      "id": "products_menu",
-      "label": "Products Menu"
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
     },
     {
-      "type": "link_list",
-      "id": "links_menu",
-      "label": "Links Menu"
+      "type": "url",
+      "id": "twitter_url",
+      "label": "Twitter URL"
     },
     {
-      "type": "text",
-      "id": "copyright_text",
-      "label": "Copyright Text",
-      "default": "© 2026 LivSo, LLC. All rights reserved."
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "url",
+      "id": "privacy_policy_url",
+      "label": "Privacy Policy URL"
+    },
+    {
+      "type": "url",
+      "id": "terms_of_use_url",
+      "label": "Terms of Use URL"
+    },
+    {
+      "type": "url",
+      "id": "terms_of_sale_url",
+      "label": "Terms of Sale URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_icon",
+      "name": "Product Icon",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product Link"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Footer"
+      "name": "Footer",
+      "blocks": [
+        { "type": "product_icon" },
+        { "type": "product_icon" },
+        { "type": "product_icon" }
+      ]
     }
   ]
 }

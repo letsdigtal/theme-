@@ -1,0 +1,80 @@
+{% comment %}
+  Our Story Section - LivSo Style
+  Video with text overlay
+{% endcomment %}
+
+<section class="our-story feature" id="story">
+  <h1>{{ section.settings.title }}</h1>
+  
+  <div class="block-wrap">
+    <div class="image">
+      {% if section.settings.story_image != blank %}
+        <img class="parallax" data-parallax-duration="1600%" src="{{ section.settings.story_image | image_url: width: 1200 }}" data-rjs="{{ section.settings.story_image | image_url: width: 2400 }}">
+      {% endif %}
+    </div>
+    
+    <div class="content">
+      <h2>{{ section.settings.subheading }}</h2>
+      
+      <button class="video-modal" data-toggle="modal" data-target="#video">
+        <span class="sr-only">Open video modal</span>
+        <svg fill="#94D6DF" xmlns="http://www.w3.org/2000/svg" width="33.84" height="40.28" viewBox="0 0 16.92 20.14">
+          <path d="M15.82,8.07,3.64.37A2.37,2.37,0,0,0,0,2.38V17.76a2.37,2.37,0,0,0,3.64,2l12.18-7.69A2.37,2.37,0,0,0,15.82,8.07Z"/>
+        </svg>
+      </button>
+      
+      <p>{{ section.settings.text }}</p>
+    </div>
+  </div>
+  
+  {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+    <a href="{{ section.settings.button_link }}" class="cta">
+      {{ section.settings.button_label }}
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#FFF" viewBox="0 0 29.36 11.73">
+        <rect y="5.36" width="29" height="1"/>
+        <polyline points="28.66 5.36 23 11.02 23.71 11.73 29.36 6.07 29.36 5.66 23.71 0 23 0.71 28.66 6.36"/>
+      </svg>
+    </a>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Story"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Story Image"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "WHAT DRIVES US"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ]
+}
+{% endschema %}

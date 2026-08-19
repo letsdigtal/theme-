@@ -1,98 +1,28 @@
-{%- style -%}
-  .announcement-bar {
-    background-color: #5C6E61;
-    color: #FFFFFF;
-    padding: 10px 20px;
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    position: relative;
-    overflow: hidden;
-  }
+{% comment %}
+  Announcement Bar - LivSo Style
+  Fixed sample button at top left
+{% endcomment %}
 
-  .announcement-bar__slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .announcement-bar__slide {
-    min-width: 100%;
-    padding: 5px 0;
-  }
-
-  .announcement-bar__slide a {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  .announcement-bar__slide a:hover {
-    text-decoration: underline;
-  }
-{%- endstyle -%}
-
-<div class="announcement-bar" data-section-id="{{ section.id }}">
-  <div class="announcement-bar__slider">
-    {%- for block in section.blocks -%}
-      <div class="announcement-bar__slide" {{ block.shopify_attributes }}>
-        {{ block.settings.text }}
-      </div>
-    {%- endfor -%}
-  </div>
+<div class="sample" id="sample">
+  <form method="post" action="/cart/add">
+    <input type="hidden" name="quantity" value="1" />
+    <input type="hidden" name="id" value="{{ section.settings.sample_variant_id }}" />
+    <input type="submit" value="Try A $2 Sample!" />
+    <svg height="64px" preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5.65 10.2">
+      <circle cx="3" cy="6" r="8" fill="none" stroke="#fff" stroke-width=".2"/>
+      <path fill="#FFFFFF" d="M5.63,7c-.21-2.55-2.8-3.63-2.8-7C2.82,3.42.23,4.44,0,7a2.74,2.74,0,0,0,0,.32A2.82,2.82,0,1,0,5.63,7Z"/>
+    </svg>
+  </form>
 </div>
-
-<script>
-  (function() {
-    const slider = document.querySelector('.announcement-bar__slider');
-    if (!slider || slider.children.length <= 1) return;
-
-    let currentSlide = 0;
-    const slides = slider.children;
-    const totalSlides = slides.length;
-
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }, 4000);
-  })();
-</script>
 
 {% schema %}
 {
   "name": "Announcement Bar",
-  "settings": [],
-  "blocks": [
+  "settings": [
     {
-      "type": "text",
-      "name": "Text",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text",
-          "default": "FREE SHIPPING on all orders over $49"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Announcement Bar",
-      "blocks": [
-        {
-          "type": "text",
-          "settings": {
-            "text": "TRY A $2 SAMPLE!"
-          }
-        },
-        {
-          "type": "text",
-          "settings": {
-            "text": "FREE SHIPPING on all orders over $49 shipped within the US"
-          }
-        }
-      ]
+      "type": "product_variant",
+      "id": "sample_variant_id",
+      "label": "Sample Variant"
     }
   ]
 }

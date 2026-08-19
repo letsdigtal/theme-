@@ -1,0 +1,77 @@
+{% comment %}
+  In The Press Section - LivSo Style
+  Press quotes carousel
+{% endcomment %}
+
+<section class="press feature" id="press">
+  <div class="container">
+    <h2>{{ section.settings.title }}</h2>
+    
+    <div class="press-slider">
+      {% for block in section.blocks %}
+        <div class="slide">
+          <h3>&ldquo;{{ block.settings.quote }}&rdquo;</h3>
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}" target="_blank">{{ block.settings.link_text }}</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    
+    <div class="slider-nav">
+      {% for i in (1..section.blocks_count) %}
+        <div class="nav-slide {% if forloop.index == 1 or forloop.index == 5 or forloop.index == 9 %}large{% endif %}"></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "In The Press",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "IN THE PRESS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        {
+          "type": "text",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Article Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "READ FULL ARTICLE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "In The Press",
+      "blocks": [
+        { "type": "quote" },
+        { "type": "quote" },
+        { "type": "quote" },
+        { "type": "quote" },
+        { "type": "quote" }
+      ]
+    }
+  ]
+}
+{% endschema %}

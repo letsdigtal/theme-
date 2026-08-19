@@ -1,0 +1,88 @@
+{% comment %}
+  The Science Section - LivSo Style
+  Clinical stats with image
+{% endcomment %}
+
+<section class="science feature" id="science">
+  <h1>{{ section.settings.title }}</h1>
+  
+  <div class="block-wrap">
+    <div class="image">
+      {% if section.settings.science_image != blank %}
+        <img class="full parallax" data-parallax-duration="1600%" src="{{ section.settings.science_image | image_url: width: 1200 }}" data-rjs="{{ section.settings.science_image | image_url: width: 2400 }}">
+      {% endif %}
+    </div>
+    
+    <div class="content">
+      <h2>{{ section.settings.subheading }}</h2>
+      
+      <svg height="28px" preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" viewBox="0 0 5.65 10.2">
+        <path d="M5.63,7c-.21-2.55-2.8-3.63-2.8-7C2.82,3.42.23,4.44,0,7a2.74,2.74,0,0,0,0,.32A2.82,2.82,0,1,0,5.63,7Z"/>
+      </svg>
+      
+      <p>{{ section.settings.text }}</p>
+      
+      {% if section.settings.stat_text != blank %}
+        <p><strong>{{ section.settings.stat_text }}</strong></p>
+      {% endif %}
+    </div>
+  </div>
+  
+  <div class="button-wrap">
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="cta">
+        {{ section.settings.button_label }}
+        <svg preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg" fill="#FFF" viewBox="0 0 29.36 11.73">
+          <rect y="5.36" width="29" height="1" fill="#FFF"/>
+          <polyline points="28.66 5.36 23 11.02 23.71 11.73 29.36 6.07 29.36 5.66 23.71 0 23 0.71 28.66 6.36"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The Science",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The Science"
+    },
+    {
+      "type": "image_picker",
+      "id": "science_image",
+      "label": "Science Image"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "FORMULATED WITH YOUR SPECIFIC NEEDS IN MIND"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "stat_text",
+      "label": "Stat Callout"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ]
+}
+{% endschema %}

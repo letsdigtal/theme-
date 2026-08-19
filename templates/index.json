@@ -2,123 +2,79 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "blocks": {
-        "text-1": {
-          "type": "text",
-          "settings": {
-            "text": "TRY A $2 SAMPLE!"
-          }
-        },
-        "text-2": {
-          "type": "text",
-          "settings": {
-            "text": "FREE SHIPPING on all orders over $49 shipped within the US"
-          }
-        }
-      },
-      "block_order": ["text-1", "text-2"]
+      "settings": {}
     },
     "header": {
       "type": "header",
-      "settings": {
-        "logo_text": "LivSo"
-      }
+      "settings": {}
     },
     "hero-banner": {
       "type": "hero-banner",
-      "settings": {
-        "title": "Expertly Made, Perfectly You",
-        "text": "<p>Handpicked ingredients by a Board-Certified Dermatologist alleviate scalp dryness and itching. Our formulas nourish and moisturize your naturally textured kinky, curly, or wavy hair from the root to the tip.</p>",
-        "button_text": "SHOP NOW"
-      }
+      "settings": {}
     },
-    "featured-products": {
-      "type": "featured-product-grid",
+    "product-overview": {
+      "type": "product-overview",
       "blocks": {
-        "product-1": {
+        "shampoo": {
           "type": "product",
           "settings": {
-            "title": "Moisturizing Shampoo",
-            "button_text": "SHOP NOW"
+            "product_title": "Moisturizing Shampoo"
           }
         },
-        "product-2": {
+        "conditioner": {
           "type": "product",
           "settings": {
-            "title": "Moisturizing Conditioner",
-            "button_text": "SHOP NOW"
+            "product_title": "Moisturizing Conditioner"
           }
         },
-        "product-3": {
+        "lotion": {
           "type": "product",
           "settings": {
-            "title": "Moisturizing Lotion",
-            "button_text": "SHOP NOW"
+            "product_title": "Moisturizing Lotion"
           }
         }
       },
-      "block_order": ["product-1", "product-2", "product-3"]
+      "block_order": ["shampoo", "conditioner", "lotion"],
+      "settings": {}
     },
-    "brand-story": {
-      "type": "brand-story-video",
-      "settings": {
-        "subheading": "WHAT DRIVES US",
-        "title": "Our Story",
-        "button_text": "LEARN MORE"
-      }
+    "our-story": {
+      "type": "our-story",
+      "settings": {}
     },
-    "quote-banner": {
-      "type": "quote-banner",
-      "settings": {
-        "text": ""I feel like LivSo helped me love my hair again."",
-        "author": "— Elizabeth Blount"
-      }
+    "testimonial": {
+      "type": "testimonial",
+      "settings": {}
     },
-    "clinical-stats": {
-      "type": "rich-text-clinical",
-      "settings": {
-        "heading": "The Science",
-        "subheading": "FORMULATED WITH YOUR SPECIFIC NEEDS IN MIND",
-        "button_text": "LEARN MORE"
-      }
+    "science": {
+      "type": "science",
+      "settings": {}
     },
-    "press-carousel": {
-      "type": "press-carousel",
-      "settings": {
-        "heading": "IN THE PRESS"
-      },
-      "blocks": {
-        "quote-1": { "type": "quote" },
-        "quote-2": { "type": "quote" },
-        "quote-3": { "type": "quote" },
-        "quote-4": { "type": "quote" },
-        "quote-5": { "type": "quote" }
-      },
-      "block_order": ["quote-1", "quote-2", "quote-3", "quote-4", "quote-5"]
+    "press": {
+      "type": "press",
+      "blocks": {},
+      "block_order": [],
+      "settings": {}
     },
     "newsletter": {
       "type": "newsletter",
-      "settings": {
-        "title": "STAY UP ON OUR LATEST HEALTHY HAIR TIPS, PRODUCTS & MORE",
-        "button_text": "SIGN UP"
-      }
+      "settings": {}
     },
     "footer": {
       "type": "footer",
-      "settings": {
-        "copyright_text": "© 2026 LivSo, LLC. All rights reserved."
-      }
+      "blocks": {},
+      "block_order": [],
+      "settings": {}
     }
   },
   "order": [
     "announcement-bar",
     "header",
     "hero-banner",
-    "featured-products",
-    "brand-story",
-    "quote-banner",
-    "clinical-stats",
-    "press-carousel",
+    "product-overview",
+    "our-story",
+    "testimonial",
+    "science",
+    "press",
     "newsletter",
     "footer"
   ]

@@ -1,175 +1,96 @@
-{%- style -%}
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: transparent;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
+{% comment %}
+  Header Section - LivSo Style
+  Sticky header with logo, navigation, and cart icon
+{% endcomment %}
 
-  .header.scrolled {
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-
-  .header__logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 600;
-    color: #2C302E;
-    text-decoration: none;
-    letter-spacing: 1px;
-  }
-
-  .header__nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .header__menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 25px;
-  }
-
-  .header__menu-item a {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #2C302E;
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .header__menu-item a:hover {
-    opacity: 0.7;
-  }
-
-  .header__icons {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .header__icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    color: #2C302E;
-  }
-
-  .header__icon svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-  }
-
-  @media (max-width: 768px) {
-    .header {
-      padding: 15px 20px;
-    }
-
-    .header__menu {
-      display: none;
-    }
-
-    .mobile-menu-toggle {
-      display: block;
-    }
-
-    .header__nav {
-      gap: 15px;
-    }
-  }
-{%- endstyle -%}
-
-<header class="header" data-section-id="{{ section.id }}">
-  <a href="/" class="header__logo">
-    {{ section.settings.logo_text | default: 'LivSo' }}
-  </a>
-
-  <nav class="header__nav">
-    <ul class="header__menu">
-      {%- for link in section.settings.menu.links -%}
-        <li class="header__menu-item">
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        </li>
-      {%- endfor -%}
-    </ul>
-
-    <div class="header__icons">
-      <button class="header__icon" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
+<nav class="main-nav navbar" id="main-nav" role="navigation">
+  <div class="navbar-inner">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <button class="header__icon" aria-label="Cart" id="cart-toggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <path d="M16 10a4 4 0 0 1-8 0"></path>
-        </svg>
-      </button>
+      
+      <a class="navbar-brand site-header__logo-link" href="/">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" />
+        {% else %}
+          <svg preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" viewBox="0 0 172.27 51.75">
+            <path d="M45.19,9.35a6.43,6.43,0,0,0,12.86,0,6.5,6.5,0,0,0-6.47-6.47A6.43,6.43,0,0,0,45.19,9.35Z"/>
+            <path d="M42,17.28v.38a4.66,4.66,0,0,1,2.35.68,3.32,3.32,0,0,1,1.36,2.5c.15,1.21.15,4.09.15,5.45V41.2a35.88,35.88,0,0,1-.38,6.28,3.48,3.48,0,0,1-2.12,2.65,7.08,7.08,0,0,1-1.74.3v.3H62.14v-.3a7.72,7.72,0,0,1-1.74-.3c-.91-.38-1.59-.83-2.12-2.65a35.52,35.52,0,0,1-.38-6.28V22.51c0-2,.07-3.56.07-4.69,0-.38-.15-.53-.45-.53Z"/>
+            <path d="M78.18,20.76a2.94,2.94,0,0,1,1.14-2.65,7,7,0,0,1,2.49-.53v-.3H59.49v.3a4.55,4.55,0,0,1,2.19.68,6,6,0,0,1,2.35,3c.38,1.06,1.59,3.86,2.42,6.28L75,50.74h5.9l.18-.55h0l9.7-29.39A5.3,5.3,0,0,1,92.93,18a5.38,5.38,0,0,1,2.28-.44v-.3H85.53v.3a14,14,0,0,1,2.37.26c1.22.31,3,1.59,2.54,3.1l0,.11L83.81,41l-4.64-15.2A17.66,17.66,0,0,1,78.18,20.76Z"/>
+            <path d="M39.73,50.74V33.58h-.46c-.63,4.28-1,9.9-3.29,13.51a7.57,7.57,0,0,1-2.59,2.59,6.34,6.34,0,0,1-2.71.72H23a6.19,6.19,0,0,1-1.91-.32c-1.53-.6-1.88-1.6-2.23-3.31-.51-2.47-.38-8.29-.38-13.74V18.64c0-5.45,0-11.72.38-14.57a2.7,2.7,0,0,1,2.3-2.53,10.19,10.19,0,0,1,1.92-.24V1H.15v.3a10.19,10.19,0,0,1,1.92.24,2.71,2.71,0,0,1,2.3,2.53c.41,2.84.38,9.12.38,14.57V33c0,5.45.13,11.27-.38,13.74C4,48.48,3.55,49.64,2.14,50.1A6.73,6.73,0,0,1,0,50.41v.32H39.73Z"/>
+            <path d="M150.81,16c-7.91,1.25-15,7.47-15,17.61,0,10.57,7.68,16.9,16.08,17.77h0a20.25,20.25,0,0,0,5.3-.13c8-1.24,15.11-7.49,15.11-17.64s-7.07-16.32-15-17.6h0a16.21,16.21,0,0,0-6.51,0Zm5.36.17h0a2.07,2.07,0,0,1,1,.56c1.63,1.94,2.18,7.8,2.18,16.88s-.61,14.9-2.15,16.79a1.77,1.77,0,0,1-1,.64,20.48,20.48,0,0,1-4.36,0,2.25,2.25,0,0,1-1-.65c-1.55-1.89-2.16-7.69-2.16-16.77s.53-14.95,2.15-16.89a2.06,2.06,0,0,1,1-.55A14.58,14.58,0,0,1,156.17,16.13Z"/>
+            <path d="M116.66,51.73c9.64-.53,17.53-5.81,17.53-16.06,0-10.82-7.95-14.08-15.67-17.41-5.52-2.42-10.59-3.89-10.59-10.71,0-2.94,1.48-6.19,5.24-7h0a8.65,8.65,0,0,1,1.34-.19h0a12.2,12.2,0,0,1,3,.13l.09,0a11.47,11.47,0,0,1,7.61,4.61h0l.41.58c2.15,3.13,3,8.5,3.88,12h.6l-.83-16.42h-.6l-3,3.1-.38.39C121.7.36,118.11,0,114.72,0h-.21c-8.91.27-17.09,5.91-17.09,14.7,0,10.29,8.7,14.91,15.75,17.64,8.48,3.41,10,6.36,10,10.45,0,3.65-1.08,7.42-4.92,8.4a5.43,5.43,0,0,1-.63.13h-.05a9.3,9.3,0,0,1-1.18.09h0c-3.22,0-7.83-.76-11.14-2.9a11.08,11.08,0,0,1-3.52-5.09,112.26,112.26,0,0,1-3.23-10.86h-.68l.3,18.16h.53s2.25-3.38,2.73-4.16a45.09,45.09,0,0,0,5,3h0a23.24,23.24,0,0,0,9.16,2.19C115.81,51.75,116.25,51.75,116.66,51.73Z"/>
+          </svg>
+        {% endif %}
+      </a>
     </div>
-  </nav>
 
-  <button class="mobile-menu-toggle" aria-label="Menu">
-    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  </button>
-</header>
+    <div id="navbar" class="collapse navbar-collapse top" nav-collapse="">
+      <nav role="navigation">
+        <div class="nav-wrap outter">
+          <div class="nav-wrap inner">
+            <ul class="menu nav navbar-nav">
+              {% for link in section.settings.menu.links %}
+                <li>
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                  {% if link.links != blank %}
+                    <div class="dropdown">
+                      {% for child_link in link.links %}
+                        <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </li>
+              {% endfor %}
+              
+              <li><div class="dash"><span></span></div></li>
+              
+              <li>
+                <a href="/cart">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20">
+                    <circle fill="#FFFFFF" cx="7" cy="18" r="2"/>
+                    <circle fill="#FFFFFF" cx="17" cy="18" r="2"/>
+                    <path fill="#FFFFFF" d="M21.38,6l-1.91,7H6V6H21.38M6,0H0V2H2A2,2,0,0,1,4,4V15H21L24,4H6V0Z"/>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</nav>
 
-<script>
-  window.addEventListener('scroll', function() {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-</script>
+<div class="banner banner-first">
+  <a href="/collections/all">
+    <span>{{ section.settings.banner_text }}</span>
+  </a>
+</div>
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
     {
-      "type": "text",
-      "id": "logo_text",
-      "label": "Logo Text",
-      "default": "LivSo"
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
     },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu"
-    }
-  ],
-  "presets": [
+      "label": "Menu",
+      "default": "main-menu"
+    },
     {
-      "name": "Header"
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "FREE SHIPPING on all orders over $49 shipped within the US"
     }
   ]
 }
