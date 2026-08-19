@@ -1,0 +1,156 @@
+{%- style -%}
+  .rich-text-clinical {
+    padding: 100px 40px;
+    background-color: #FFFFFF;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .rich-text-clinical__heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: #2C302E;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .rich-text-clinical__subheading {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #5C6E61;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .rich-text-clinical__body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #2C302E;
+    max-width: 800px;
+    margin: 0 auto 32px;
+    text-align: center;
+  }
+
+  .rich-text-clinical__stat {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2C302E;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .rich-text-clinical__button {
+    display: inline-block;
+    background-color: #5C6E61;
+    color: #FFFFFF;
+    padding: 16px 36px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .rich-text-clinical__button:hover {
+    background-color: #4a5a50;
+  }
+
+  @media (max-width: 768px) {
+    .rich-text-clinical {
+      padding: 60px 20px;
+    }
+
+    .rich-text-clinical__heading {
+      font-size: 36px;
+    }
+
+    .rich-text-clinical__body {
+      font-size: 15px;
+    }
+
+    .rich-text-clinical__stat {
+      font-size: 16px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="rich-text-clinical" data-section-id="{{ section.id }}">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="rich-text-clinical__heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  {%- if section.settings.subheading != blank -%}
+    <p class="rich-text-clinical__subheading">{{ section.settings.subheading }}</p>
+  {%- endif -%}
+
+  {%- if section.settings.body_text != blank -%}
+    <div class="rich-text-clinical__body">{{ section.settings.body_text }}</div>
+  {%- endif -%}
+
+  {%- if section.settings.stat_text != blank -%}
+    <p class="rich-text-clinical__stat">{{ section.settings.stat_text }}</p>
+  {%- endif -%}
+
+  {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+    <a href="{{ section.settings.button_link }}" class="rich-text-clinical__button">
+      {{ section.settings.button_text }}
+    </a>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Rich Text Clinical",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Science"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "FORMULATED WITH YOUR SPECIFIC NEEDS IN MIND"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body Text"
+    },
+    {
+      "type": "richtext",
+      "id": "stat_text",
+      "label": "Stat Callout"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text Clinical"
+    }
+  ]
+}
+{% endschema %}

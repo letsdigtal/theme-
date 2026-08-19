@@ -1,0 +1,205 @@
+{%- style -%}
+  .brand-story {
+    padding: 100px 40px;
+    background-color: #F9FAF8;
+    text-align: center;
+  }
+
+  .brand-story__subheading {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #5C6E61;
+    margin-bottom: 16px;
+  }
+
+  .brand-story__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: #2C302E;
+    margin-bottom: 40px;
+  }
+
+  .brand-story__video-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto 50px;
+    cursor: pointer;
+  }
+
+  .brand-story__video-thumbnail {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .brand-story__play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .brand-story__video-wrapper:hover .brand-story__play-button {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .brand-story__play-button svg {
+    width: 30px;
+    height: 30px;
+    color: #5C6E61;
+    margin-left: 5px;
+  }
+
+  .brand-story__quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.8;
+    color: #2C302E;
+    max-width: 800px;
+    margin: 0 auto 40px;
+  }
+
+  .brand-story__button {
+    display: inline-block;
+    background-color: #5C6E61;
+    color: #FFFFFF;
+    padding: 16px 36px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .brand-story__button:hover {
+    background-color: #4a5a50;
+  }
+
+  @media (max-width: 768px) {
+    .brand-story {
+      padding: 60px 20px;
+    }
+
+    .brand-story__title {
+      font-size: 36px;
+    }
+
+    .brand-story__quote {
+      font-size: 20px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="brand-story" data-section-id="{{ section.id }}">
+  {%- if section.settings.subheading != blank -%}
+    <p class="brand-story__subheading">{{ section.settings.subheading }}</p>
+  {%- endif -%}
+
+  {%- if section.settings.title != blank -%}
+    <h2 class="brand-story__title">{{ section.settings.title }}</h2>
+  {%- endif -%}
+
+  {%- if section.settings.video_thumbnail != blank or section.settings.video_url != blank -%}
+    <div class="brand-story__video-wrapper" onclick="openVideoModal()">
+      {%- if section.settings.video_thumbnail != blank -%}
+        <img 
+          src="{{ section.settings.video_thumbnail | image_url: width: 1200 }}" 
+          alt="Video thumbnail"
+          class="brand-story__video-thumbnail"
+        >
+      {%- endif -%}
+      <div class="brand-story__play-button">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.quote != blank -%}
+    <blockquote class="brand-story__quote">{{ section.settings.quote }}</blockquote>
+  {%- endif -%}
+
+  {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+    <a href="{{ section.settings.button_link }}" class="brand-story__button">
+      {{ section.settings.button_text }}
+    </a>
+  {%- endif -%}
+</section>
+
+<script>
+  function openVideoModal() {
+    const videoUrl = '{{ section.settings.video_url }}';
+    if (videoUrl) {
+      window.open(videoUrl, '_blank');
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Brand Story Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "WHAT DRIVES US"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Story"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_thumbnail",
+      "label": "Video Thumbnail"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (YouTube/Vimeo)"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Quote"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story Video"
+    }
+  ]
+}
+{% endschema %}

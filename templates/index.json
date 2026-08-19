@@ -2,135 +2,123 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "settings": {}
+      "blocks": {
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "TRY A $2 SAMPLE!"
+          }
+        },
+        "text-2": {
+          "type": "text",
+          "settings": {
+            "text": "FREE SHIPPING on all orders over $49 shipped within the US"
+          }
+        }
+      },
+      "block_order": ["text-1", "text-2"]
     },
     "header": {
       "type": "header",
-      "settings": {}
-    },
-    "hero-slider": {
-      "type": "hero-slider",
-      "blocks": [
-        {
-          "type": "slide",
-          "settings": {
-            "slide_subtitle": "NATURAL SKINCARE",
-            "slide_heading": "Reveal Your Natural Glow",
-            "slide_text": "Discover our premium collection of organic skincare products designed to nourish and revitalize your skin.",
-            "slide_button_label": "Shop Collection"
-          }
-        },
-        {
-          "type": "slide",
-          "settings": {
-            "slide_subtitle": "NEW ARRIVALS",
-            "slide_heading": "Fresh From Nature",
-            "slide_text": "Experience the power of botanical ingredients in our latest formulations.",
-            "slide_button_label": "Explore Now"
-          }
-        }
-      ],
-      "block_order": ["slide-1", "slide-2"]
-    },
-    "features": {
-      "type": "features",
-      "blocks": [
-        {
-          "type": "feature",
-          "settings": {
-            "title": "Natural Ingredients",
-            "text": "Crafted with pure, organic ingredients sourced from nature."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "title": "Cruelty Free",
-            "text": "Never tested on animals. Certified by leading organizations."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "title": "Dermatologist Tested",
-            "text": "Clinically proven safe for all skin types including sensitive skin."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "title": "Eco Friendly",
-            "text": "Sustainable packaging and environmentally conscious practices."
-          }
-        }
-      ],
-      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4"]
-    },
-    "collection-grid": {
-      "type": "collection-grid",
       "settings": {
-        "section_subtitle": "BESTSELLERS",
-        "section_title": "Our Favorite Products",
-        "section_description": "Discover our most loved skincare essentials, carefully formulated for radiant, healthy-looking skin."
+        "logo_text": "LivSo"
       }
     },
-    "testimonials": {
-      "type": "testimonials",
+    "hero-banner": {
+      "type": "hero-banner",
       "settings": {
-        "section_subtitle": "TESTIMONIALS",
-        "section_title": "What Our Customers Say"
-      },
-      "blocks": [
-        {
-          "type": "testimonial",
+        "title": "Expertly Made, Perfectly You",
+        "text": "<p>Handpicked ingredients by a Board-Certified Dermatologist alleviate scalp dryness and itching. Our formulas nourish and moisturize your naturally textured kinky, curly, or wavy hair from the root to the tip.</p>",
+        "button_text": "SHOP NOW"
+      }
+    },
+    "featured-products": {
+      "type": "featured-product-grid",
+      "blocks": {
+        "product-1": {
+          "type": "product",
           "settings": {
-            "quote": "This product has completely transformed my skin! I've never felt more confident.",
-            "author_name": "Sarah M.",
-            "author_location": "Los Angeles, CA",
-            "rating": 5
+            "title": "Moisturizing Shampoo",
+            "button_text": "SHOP NOW"
           }
         },
-        {
-          "type": "testimonial",
+        "product-2": {
+          "type": "product",
           "settings": {
-            "quote": "Finally found a skincare line that works for my sensitive skin. Absolutely love it!",
-            "author_name": "Emily R.",
-            "author_location": "New York, NY",
-            "rating": 5
+            "title": "Moisturizing Conditioner",
+            "button_text": "SHOP NOW"
           }
         },
-        {
-          "type": "testimonial",
+        "product-3": {
+          "type": "product",
           "settings": {
-            "quote": "The quality is outstanding and the results are visible within days. Highly recommend!",
-            "author_name": "Jessica T.",
-            "author_location": "Miami, FL",
-            "rating": 5
+            "title": "Moisturizing Lotion",
+            "button_text": "SHOP NOW"
           }
         }
-      ],
-      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"]
+      },
+      "block_order": ["product-1", "product-2", "product-3"]
+    },
+    "brand-story": {
+      "type": "brand-story-video",
+      "settings": {
+        "subheading": "WHAT DRIVES US",
+        "title": "Our Story",
+        "button_text": "LEARN MORE"
+      }
+    },
+    "quote-banner": {
+      "type": "quote-banner",
+      "settings": {
+        "text": ""I feel like LivSo helped me love my hair again."",
+        "author": "— Elizabeth Blount"
+      }
+    },
+    "clinical-stats": {
+      "type": "rich-text-clinical",
+      "settings": {
+        "heading": "The Science",
+        "subheading": "FORMULATED WITH YOUR SPECIFIC NEEDS IN MIND",
+        "button_text": "LEARN MORE"
+      }
+    },
+    "press-carousel": {
+      "type": "press-carousel",
+      "settings": {
+        "heading": "IN THE PRESS"
+      },
+      "blocks": {
+        "quote-1": { "type": "quote" },
+        "quote-2": { "type": "quote" },
+        "quote-3": { "type": "quote" },
+        "quote-4": { "type": "quote" },
+        "quote-5": { "type": "quote" }
+      },
+      "block_order": ["quote-1", "quote-2", "quote-3", "quote-4", "quote-5"]
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "section_subtitle": "STAY IN THE LOOP",
-        "section_title": "Join Our Community",
-        "section_text": "Subscribe to receive updates, access to exclusive deals, and more."
+        "title": "STAY UP ON OUR LATEST HEALTHY HAIR TIPS, PRODUCTS & MORE",
+        "button_text": "SIGN UP"
       }
     },
     "footer": {
       "type": "footer",
-      "settings": {}
+      "settings": {
+        "copyright_text": "© 2026 LivSo, LLC. All rights reserved."
+      }
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "hero-slider",
-    "features",
-    "collection-grid",
-    "testimonials",
+    "hero-banner",
+    "featured-products",
+    "brand-story",
+    "quote-banner",
+    "clinical-stats",
+    "press-carousel",
     "newsletter",
     "footer"
   ]

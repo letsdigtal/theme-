@@ -2,47 +2,33 @@
   .header {
     position: sticky;
     top: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     z-index: 1000;
-    transition: var(--transition-base);
+    background-color: transparent;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .header__container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
+  .header.scrolled {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
 
   .header__logo {
-    flex-shrink: 0;
-  }
-
-  .header__logo img {
-    max-height: 50px;
-    width: auto;
-    transition: var(--transition-base);
-  }
-
-  .header__logo-text {
-    font-family: var(--font-heading);
-    font-size: 1.75rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
     font-weight: 600;
-    letter-spacing: 2px;
-    color: var(--color-text);
+    color: #2C302E;
     text-decoration: none;
-    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   .header__nav {
-    flex: 1;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 30px;
   }
 
   .header__menu {
@@ -50,35 +36,18 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 2.5rem;
+    gap: 25px;
   }
 
   .header__menu-item a {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 1px;
-    color: var(--color-text);
-    text-decoration: none;
     text-transform: uppercase;
-    transition: var(--transition-base);
-    position: relative;
-    padding: 0.5rem 0;
-  }
-
-  .header__menu-item a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--color-primary);
-    transition: width 0.3s ease;
-  }
-
-  .header__menu-item a:hover::after {
-    width: 100%;
+    letter-spacing: 1px;
+    color: #2C302E;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
   }
 
   .header__menu-item a:hover {
@@ -88,300 +57,98 @@
   .header__icons {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    flex-shrink: 0;
+    gap: 20px;
   }
 
-  .header__icon-btn {
+  .header__icon {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
-    color: var(--color-text);
-    transition: var(--transition-base);
-    position: relative;
+    padding: 5px;
+    color: #2C302E;
   }
 
-  .header__icon-btn:hover {
-    opacity: 0.7;
-    transform: scale(1.05);
-  }
-
-  .header__icon-btn svg {
+  .header__icon svg {
     width: 24px;
     height: 24px;
   }
 
-  .header__cart-count {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: var(--color-primary);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 600;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .header__mobile-toggle {
+  .mobile-menu-toggle {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
-    color: var(--color-text);
+    padding: 5px;
   }
 
-  .header__mobile-toggle svg {
-    width: 28px;
-    height: 28px;
-  }
+  @media (max-width: 768px) {
+    .header {
+      padding: 15px 20px;
+    }
 
-  /* Mobile Menu */
-  .header__mobile-menu {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100vh;
-    background: #fff;
-    z-index: 1001;
-    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-y: auto;
-  }
-
-  .header__mobile-menu.is-open {
-    left: 0;
-  }
-
-  .header__mobile-menu-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .header__mobile-menu-close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    color: var(--color-text);
-  }
-
-  .header__mobile-menu-nav {
-    padding: 2rem;
-  }
-
-  .header__mobile-menu-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .header__mobile-menu-item a {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: var(--color-text);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: var(--transition-base);
-  }
-
-  .header__mobile-menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition-base);
-  }
-
-  .header__mobile-menu-overlay.is-visible {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  @media screen and (max-width: 1024px) {
-    .header__nav {
+    .header__menu {
       display: none;
     }
 
-    .header__mobile-toggle {
+    .mobile-menu-toggle {
       display: block;
     }
 
-    .header__container {
-      padding: 1rem 1.5rem;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .header__icons {
-      gap: 1rem;
-    }
-
-    .header__icon-btn svg {
-      width: 22px;
-      height: 22px;
+    .header__nav {
+      gap: 15px;
     }
   }
 {%- endstyle -%}
 
-<header class="header" role="banner">
-  <div class="header__container">
-    <!-- Mobile Menu Toggle -->
-    <button class="header__mobile-toggle" aria-label="Open menu" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </button>
+<header class="header" data-section-id="{{ section.id }}">
+  <a href="/" class="header__logo">
+    {{ section.settings.logo_text | default: 'LivSo' }}
+  </a>
 
-    <!-- Logo -->
-    <div class="header__logo">
-      {% if section.settings.logo != blank %}
-        <a href="{{ routes.root_url }}">
-          <img src="{{ section.settings.logo | image_url: width: 400 }}" 
-               alt="{{ shop.name }}"
-               width="{{ section.settings.logo.width }}"
-               height="{{ section.settings.logo.height }}">
-        </a>
-      {% else %}
-        <a href="{{ routes.root_url }}" class="header__logo-text">
-          {{ shop.name }}
-        </a>
-      {% endif %}
-    </div>
+  <nav class="header__nav">
+    <ul class="header__menu">
+      {%- for link in section.settings.menu.links -%}
+        <li class="header__menu-item">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {%- endfor -%}
+    </ul>
 
-    <!-- Desktop Navigation -->
-    <nav class="header__nav" role="navigation">
-      <ul class="header__menu">
-        {% for link in section.settings.menu.links %}
-          <li class="header__menu-item">
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-
-    <!-- Icons -->
     <div class="header__icons">
-      <button class="header__icon-btn search-toggle" aria-label="Search">
+      <button class="header__icon" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
           <path d="m21 21-4.35-4.35"></path>
         </svg>
       </button>
-      
-      <a href="{{ routes.account_url }}" class="header__icon-btn" aria-label="Account">
+      <button class="header__icon" aria-label="Cart" id="cart-toggle">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-      </a>
-      
-      <a href="{{ routes.cart_url }}" class="header__icon-btn cart-icon" aria-label="Cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="9" cy="21" r="1"></circle>
-          <circle cx="20" cy="21" r="1"></circle>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-        {% if cart.item_count > 0 %}
-          <span class="header__cart-count">{{ cart.item_count }}</span>
-        {% endif %}
-      </a>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div class="header__mobile-menu-overlay" aria-hidden="true"></div>
-  <div class="header__mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile menu">
-    <div class="header__mobile-menu-header">
-      {% if section.settings.logo != blank %}
-        <img src="{{ section.settings.logo | image_url: width: 300 }}" 
-             alt="{{ shop.name }}"
-             style="max-height: 40px; width: auto;">
-      {% else %}
-        <span class="header__logo-text" style="font-size: 1.5rem;">{{ shop.name }}</span>
-      {% endif %}
-      <button class="header__mobile-menu-close" aria-label="Close menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
         </svg>
       </button>
     </div>
-    <nav class="header__mobile-menu-nav">
-      <ul class="header__mobile-menu-list">
-        {% for link in section.settings.menu.links %}
-          <li class="header__mobile-menu-item">
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-        {% endfor %}
-        <li class="header__mobile-menu-item">
-          <a href="{{ routes.account_url }}">Account</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  </nav>
+
+  <button class="mobile-menu-toggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
 </header>
 
 <script>
-  (function() {
-    const mobileToggle = document.querySelector('.header__mobile-toggle');
-    const mobileMenu = document.querySelector('.header__mobile-menu');
-    const mobileClose = document.querySelector('.header__mobile-menu-close');
-    const overlay = document.querySelector('.header__mobile-menu-overlay');
-
-    function openMenu() {
-      mobileMenu.classList.add('is-open');
-      overlay.classList.add('is-visible');
-      mobileToggle.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
+  window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
     }
-
-    function closeMenu() {
-      mobileMenu.classList.remove('is-open');
-      overlay.classList.remove('is-visible');
-      mobileToggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-
-    if (mobileToggle) {
-      mobileToggle.addEventListener('click', openMenu);
-    }
-
-    if (mobileClose) {
-      mobileClose.addEventListener('click', closeMenu);
-    }
-
-    if (overlay) {
-      overlay.addEventListener('click', closeMenu);
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
-        closeMenu();
-      }
-    });
-  })();
+  });
 </script>
 
 {% schema %}
@@ -389,15 +156,20 @@
   "name": "Header",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo Image"
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "LivSo"
     },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu",
-      "default": "main-menu"
+      "label": "Menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
     }
   ]
 }
