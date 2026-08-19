@@ -38,14 +38,9 @@
       {{ 'accessibility.skip_to_text' | t }}
     </a>
 
-    {% section 'announcement-bar' %}
-    {% section 'header' %}
-
     <main id="MainContent" class="main-content" role="main">
       {{ content_for_layout }}
     </main>
-
-    {% section 'footer' %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
