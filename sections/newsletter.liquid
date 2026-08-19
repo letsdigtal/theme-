@@ -1,0 +1,310 @@
+{%- style -%}
+  .newsletter {
+    padding: var(--spacing-xl) 2rem;
+    background: linear-gradient(135deg, #f8f5f2 0%, #f0ede9 100%);
+  }
+
+  .newsletter__container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .newsletter__icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 2rem;
+    color: var(--color-primary);
+  }
+
+  .newsletter__icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .newsletter__subtitle {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter__title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .newsletter__text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 2.5rem;
+  }
+
+  .newsletter__form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .newsletter__input {
+    flex: 1;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text);
+    background: #ffffff;
+    transition: var(--transition-base);
+  }
+
+  .newsletter__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .newsletter__input::placeholder {
+    color: #999;
+  }
+
+  .newsletter__button {
+    padding: 1.25rem 2.5rem;
+    background: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-base);
+    white-space: nowrap;
+  }
+
+  .newsletter__button:hover {
+    background: var(--color-text);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .newsletter__button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .newsletter__success {
+    display: none;
+    padding: 1.5rem;
+    background: #d4edda;
+    color: #155724;
+    border-radius: var(--border-radius-md);
+    margin-top: 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+  }
+
+  .newsletter__success.is-visible {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .newsletter {
+      padding: var(--spacing-lg) 1.5rem;
+    }
+
+    .newsletter__title {
+      font-size: 2rem;
+    }
+
+    .newsletter__form {
+      flex-direction: column;
+    }
+
+    .newsletter__button {
+      width: 100%;
+    }
+  }
+{%- endstyle -%}
+
+<section class="newsletter" data-section-id="{{ section.id }}">
+  <div class="newsletter__container">
+    {% if section.settings.icon_svg != blank %}
+      <div class="newsletter__icon">
+        {{ section.settings.icon_svg }}
+      </div>
+    {% else %}
+      <div class="newsletter__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+    {% endif %}
+
+    {% if section.settings.section_subtitle != blank %}
+      <p class="newsletter__subtitle">{{ section.settings.section_subtitle }}</p>
+    {% endif %}
+
+    {% if section.settings.section_title != blank %}
+      <h2 class="newsletter__title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    {% if section.settings.section_text != blank %}
+      <p class="newsletter__text">{{ section.settings.section_text }}</p>
+    {% endif %}
+
+    {% form 'customer', class: 'newsletter__form' %}
+      {% if form.posted_successfully? %}
+        <div class="newsletter__success is-visible">
+          {{ section.settings.success_message | default: "Thank you for subscribing! We'll be in touch soon." }}
+        </div>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        
+        <div class="newsletter__form">
+          <input 
+            type="email" 
+            name="contact[email]" 
+            class="newsletter__input" 
+            placeholder="{{ section.settings.input_placeholder | default: 'Enter your email' }}"
+            required
+            aria-label="Email address"
+          >
+          <button type="submit" class="newsletter__button">
+            {{ section.settings.button_label | default: 'Subscribe' }}
+          </button>
+        </div>
+      {% endif %}
+    {% endform %}
+
+    <div class="newsletter__success" id="newsletter-success">
+      {{ section.settings.success_message | default: "Thank you for subscribing! We'll be in touch soon." }}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const form = document.querySelector('.newsletter__form form');
+    const successMessage = document.getElementById('newsletter-success');
+    
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const button = form.querySelector('.newsletter__button');
+        const originalText = button.textContent;
+        
+        button.textContent = 'Subscribing...';
+        button.disabled = true;
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            form.style.display = 'none';
+            successMessage.classList.add('is-visible');
+          } else {
+            throw new Error('Subscription failed');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          button.textContent = 'Try Again';
+          button.disabled = false;
+          
+          setTimeout(() => {
+            button.textContent = originalText;
+          }, 2000);
+        }
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "html",
+      "id": "icon_svg",
+      "label": "Icon SVG Code (optional)"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Subtitle",
+      "default": "STAY IN THE LOOP"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Join Our Community"
+    },
+    {
+      "type": "textarea",
+      "id": "section_text",
+      "label": "Text",
+      "default": "Subscribe to receive updates, access to exclusive deals, and more."
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Input Placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Thank you for subscribing! We'll be in touch soon."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

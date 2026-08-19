@@ -1,0 +1,137 @@
+{
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {}
+    },
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
+    "hero-slider": {
+      "type": "hero-slider",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "slide_subtitle": "NATURAL SKINCARE",
+            "slide_heading": "Reveal Your Natural Glow",
+            "slide_text": "Discover our premium collection of organic skincare products designed to nourish and revitalize your skin.",
+            "slide_button_label": "Shop Collection"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "slide_subtitle": "NEW ARRIVALS",
+            "slide_heading": "Fresh From Nature",
+            "slide_text": "Experience the power of botanical ingredients in our latest formulations.",
+            "slide_button_label": "Explore Now"
+          }
+        }
+      ],
+      "block_order": ["slide-1", "slide-2"]
+    },
+    "features": {
+      "type": "features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Natural Ingredients",
+            "text": "Crafted with pure, organic ingredients sourced from nature."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Cruelty Free",
+            "text": "Never tested on animals. Certified by leading organizations."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Dermatologist Tested",
+            "text": "Clinically proven safe for all skin types including sensitive skin."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Eco Friendly",
+            "text": "Sustainable packaging and environmentally conscious practices."
+          }
+        }
+      ],
+      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4"]
+    },
+    "collection-grid": {
+      "type": "collection-grid",
+      "settings": {
+        "section_subtitle": "BESTSELLERS",
+        "section_title": "Our Favorite Products",
+        "section_description": "Discover our most loved skincare essentials, carefully formulated for radiant, healthy-looking skin."
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "section_subtitle": "TESTIMONIALS",
+        "section_title": "What Our Customers Say"
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "This product has completely transformed my skin! I've never felt more confident.",
+            "author_name": "Sarah M.",
+            "author_location": "Los Angeles, CA",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Finally found a skincare line that works for my sensitive skin. Absolutely love it!",
+            "author_name": "Emily R.",
+            "author_location": "New York, NY",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The quality is outstanding and the results are visible within days. Highly recommend!",
+            "author_name": "Jessica T.",
+            "author_location": "Miami, FL",
+            "rating": 5
+          }
+        }
+      ],
+      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "section_subtitle": "STAY IN THE LOOP",
+        "section_title": "Join Our Community",
+        "section_text": "Subscribe to receive updates, access to exclusive deals, and more."
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "hero-slider",
+    "features",
+    "collection-grid",
+    "testimonials",
+    "newsletter",
+    "footer"
+  ]
+}

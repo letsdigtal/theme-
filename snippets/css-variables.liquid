@@ -1,0 +1,29 @@
+{%- style -%}
+  :root {
+    --color-primary: {{ settings.color_primary }};
+    --color-secondary: {{ settings.color_secondary }};
+    --color-accent: {{ settings.color_accent }};
+    --color-text: {{ settings.color_text }};
+    --color-background: {{ settings.color_background }};
+    
+    --font-heading: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    --font-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    
+    --transition-base: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+  }
+{%- endstyle -%}
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+</script>
